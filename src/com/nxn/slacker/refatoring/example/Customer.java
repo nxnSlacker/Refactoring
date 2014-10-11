@@ -7,7 +7,6 @@ import java.util.Vector;
  * Created by Slacker on 11-10-2014.
  */
 public class Customer {
-
     private String name;
     private List<Rent> rents = new Vector<Rent>();
 
