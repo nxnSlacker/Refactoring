@@ -4,6 +4,7 @@ package com.nxn.slacker.refatoring.example;
  * Created by Slacker on 11-10-2014.
  */
 public class Rent {
+
     private Movie movie;
     private int daysRented;
 
