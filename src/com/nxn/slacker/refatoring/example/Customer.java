@@ -27,19 +27,34 @@ class Customer {
     }
 
     public String statement(){
-        String result = "Rental Record for: " + getName() + "\n";
+        StringBuilder result = new StringBuilder();
+        result.append("Rental Record for: " + getName() + "\n");
 
         for (Rent rent : rents) {
-            result += "\t" + rent.getMovie().getTitle() + "\t" + String.valueOf(rent.getCharge()) + "\n";
+            result.append("\t" + rent.getMovie().getTitle() + "\t" + String.valueOf(rent.getCharge()) + "\n");
         }
 
-        result += "Amount owed is " + String.valueOf(getTotalCharge()) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints()) + " frequent renter points";
+        result.append("Amount owed is " + String.valueOf(getTotalCharge()) + "\n");
+        result.append("You earned " + String.valueOf(getTotalFrequentRenterPoints()) + " frequent renter points");
 
-        return result;
+        return result.toString();
     }
 
-    private int frequentRenterPoints() {
+    public String htmlSttement(){
+        StringBuilder result = new StringBuilder();
+
+        result.append("<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n");
+        for (Rent rent : rents) {
+            result.append(rent.getMovie().getTitle() + ": " + String.valueOf(rent.getCharge()) + "<BR>\n");
+        }
+
+        result.append("<P>You owe <EM>" + String.valueOf(getTotalCharge()) + "</EM><P>\n");
+        result.append("On this rental you earned <EM>" + String.valueOf(getTotalFrequentRenterPoints()) + "</EM> frequent renter points<P>");
+
+        return result.toString();
+    }
+
+    private int getTotalFrequentRenterPoints() {
         int frequentRenterPoints = 0;
         for (Rent rent : rents) {
             frequentRenterPoints = rent.getFrequentRenterPoints();
